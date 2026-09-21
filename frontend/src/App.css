@@ -1,0 +1,616 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #111827;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+
+/* =========================
+   APP
+========================= */
+
+.App {
+  background-color: white;
+  color: #111827;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  color: #111827;
+  text-align: center;
+  padding: 30px 20px 15px;
+}
+
+.header h1 {
+  color: #111827;
+  font-size: 42px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.header h3 {
+  color: #111827;
+  font-size: 18px;
+  margin: 25px 0 25px;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+}
+
+.edit {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+
+/* =========================
+   TASK CARDS
+========================= */
+
+.taskCard {
+  width: 50%;
+  box-sizing: border-box;
+
+  padding: 10px;
+  border-radius: 10px;
+
+  margin: 20px auto;
+
+  color: #111827;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.taskCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.taskCard h2 {
+  color: #111827;
+
+  margin: 0;
+  padding: 5px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  text-align: left;
+}
+
+.taskCard p {
+  color: #111827;
+
+  margin: 8px 0 0;
+  padding-left: 10px;
+
+  text-align: left;
+}
+
+
+/* Task status colors */
+
+.taskCard.in-progress {
+  background-color: #FDE68A;
+}
+
+.taskCard.completed {
+  background-color: #A7F3D0;
+}
+
+.taskCard.wont-do {
+  background-color: #FECACA;
+}
+
+.taskCard.todo {
+  background-color: #E2E8F0;
+}
+
+
+/* =========================
+   ICON BACKGROUND
+========================= */
+
+.taskCard span {
+  background-color: #F3F4F6;
+
+  padding: 2px 6px;
+
+  border-radius: 10px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================
+   ADD NEW TASK
+========================= */
+
+.cardAdd {
+  background-color: #F5E6CD;
+  color: #111827;
+
+  width: 50%;
+
+  margin: 20px auto;
+
+  border-radius: 10px;
+
+  padding: 10px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.cardAdd:hover {
+  background-color: #EFDDBF;
+  transform: translateY(-2px);
+}
+
+.cardAdd h2 {
+  color: #111827;
+
+  margin: 0;
+  padding: 5px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  text-align: left;
+}
+
+.cardAdd span {
+  background-color: #F3F4F6;
+
+  padding: 2px 6px;
+
+  border-radius: 10px;
+}
+
+
+/* =========================
+   FORM OVERLAY
+========================= */
+
+.formContainer {
+  position: fixed;
+
+  inset: 0;
+
+  background-color: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 1000;
+
+  padding: 20px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.taskForm {
+  width: 450px;
+  max-width: 100%;
+
+  background-color: white;
+
+  color: #111827;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+/* =========================
+   FORM HEADER
+========================= */
+
+.formHeader {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 5px;
+}
+
+.formHeader h2 {
+  margin: 0 0 15px;
+
+  color: #111827;
+
+  font-size: 22px;
+}
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+.closeButton {
+  border: 1px solid #ddd;
+
+  background-color: white !important;
+
+  color: #111827 !important;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  padding: 5px 10px;
+
+  font-size: 16px;
+}
+
+.closeButton:hover {
+  background-color: #f3f4f6 !important;
+}
+
+
+/* =========================
+   LABELS
+========================= */
+
+.taskForm label {
+  font-size: 13px;
+
+  color: #9ca3af !important;
+
+  margin-top: 4px;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.taskForm input,
+.taskForm textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 10px;
+
+  background-color: white !important;
+
+  color: #111827 !important;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+.taskForm input:focus,
+.taskForm textarea:focus {
+  border-color: #9ca3af;
+
+  box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.15);
+}
+
+.taskForm textarea {
+  height: 100px;
+
+  resize: none;
+}
+
+.taskForm input::placeholder,
+.taskForm textarea::placeholder {
+  color: #9ca3af;
+
+  opacity: 1;
+}
+
+
+/* =========================
+   ICON SELECTOR
+========================= */
+
+.icons {
+  display: flex;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.icons button {
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  background-color: white;
+
+  color: #111827;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.icons button:hover {
+  background-color: #f3f4f6;
+}
+
+.icons button.selected {
+  background-color: #F3F4F6;
+
+  border: 2px solid #111827;
+}
+
+
+/* =========================
+   STATUS SELECTOR
+========================= */
+
+.statusContainer {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+}
+
+.status {
+  height: 42px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  background-color: white;
+
+  color: #111827;
+
+  text-align: left;
+
+  padding: 8px 12px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.status:hover {
+  background-color: #f3f4f6;
+}
+
+
+/* Selected status */
+
+.status.selected {
+  font-weight: 600;
+}
+
+
+/* In Progress */
+
+.status.selected:nth-child(1) {
+  background-color: #FDE68A;
+
+  border-color: #F59E0B;
+}
+
+
+/* Completed */
+
+.status.selected:nth-child(2) {
+  background-color: #A7F3D0;
+
+  border-color: #22C55E;
+}
+
+
+/* Won't Do */
+
+.status.selected:nth-child(3) {
+  background-color: #FECACA;
+
+  border-color: #EF4444;
+}
+
+
+/* To Do */
+
+.status.selected:nth-child(4) {
+  background-color: #E2E8F0;
+
+  border-color: #64748B;
+}
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.createTaskButton {
+  height: 42px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background-color: #111827;
+
+  color: white;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-top: 4px;
+}
+
+.createTaskButton:hover {
+  background-color: #1F2937;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .header {
+    padding-top: 25px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+  }
+
+  .header h3 {
+    font-size: 16px;
+  }
+
+  .taskCard {
+    width: 85%;
+  }
+
+  .cardAdd {
+    width: 85%;
+  }
+
+  .taskForm {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .header h1 {
+    font-size: 26px;
+  }
+
+  .logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .edit {
+    width: 18px;
+    height: 18px;
+  }
+
+  .taskCard {
+    width: 92%;
+  }
+
+  .cardAdd {
+    width: 92%;
+  }
+
+  .statusContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .taskForm {
+    padding: 16px;
+  }
+}
+.taskActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.deleteButton {
+    height: 42px;
+    padding: 0 20px;
+
+    border: 1px solid #ef4444;
+    border-radius: 6px;
+
+    background-color: white;
+    color: #ef4444;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    flex: 1;
+}
+
+.deleteButton:hover {
+    background-color: #fee2e2;
+}
+
+.taskActions .createTaskButton {
+    flex: 1;
+}
