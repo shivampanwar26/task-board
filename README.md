@@ -1,96 +1,290 @@
-# DevChallenges.io - My Task Board
+# My Task Board
 
-![Thumbnail for the My Task Board coding challenge](./thumbnail.jpg)
+A full-stack task management application built with **React, Node.js, Express, and MongoDB**. Users can create independent task boards, manage tasks, edit task details, update statuses, and delete tasks.
 
-## Welcome! 👋
+## Features
 
-Welcome to this responsive web coding challenge.
+- Create a new task board
+- Unique URL for every board
+- Edit board name and description
+- Create tasks with default values
+- Edit task name, description, icon, and status
+- Delete tasks
+- Four task statuses:
+  - 🕐 In Progress
+  - ✓ Completed
+  - × Won't Do
+  - 📝 To Do
+- Status-based task card colors
+- Responsive UI
+- REST API backend
+- MongoDB database
+- Separate frontend and backend
+- Production backend deployed on Vercel
 
-[devChallenges.io](https://devchallenges.io/) challenges are designed to help you enhance your coding skills by building realistic projects.
+## Tech Stack
 
-## The challenge
+### Frontend
 
-Your task is to create a web page that closely resembles the provided design.
+- React
+- React Router
+- Axios
+- Vite
+- CSS
 
-You can use any tools or resources you like to complete this challenge. Each challenge is designed to practice different skills, so be sure to check the challenge description for more information.
+### Backend
 
-If you need help or have any questions, feel free to [join our community](https://github.com/orgs/devchallenges-io/discussions) and ask for support.
+- Node.js
+- Express.js
+- Mongoose
+- MongoDB
+- CORS
 
-## Where to find everything
+### Deployment
 
-Your goal is to build the project using the provided design. You can find the designs in the challenge editor once you start the challenge or in the `/design` folder. Please note that the `/design` folder may not include all the designs you need, so be sure to check the editor for more details.
+- Frontend: Netlify
+- Backend: Vercel
+- Database: MongoDB Atlas
 
-The designs are in JPG format, so you'll need to use your best judgment for styles such as `font-size`, `padding`, and `margin`. Additionally, spacing guides are available for each challenge, but access to them requires a [Pro membership](https://devchallenges.io/pro). With a Pro membership, you can also download the Figma design files.
+## Project Structure
 
-All the required assets can be found in the `/resources` folder. You may need to optimize the assets as necessary.
+```text
+my-task-board/
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   └── Board.jsx
+│   │   ├── resources/
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── main.jsx
+│   ├── .env
+│   ├── package.json
+│   └── ...
+├── backend/
+│   ├── api/
+│   │   └── index.js
+│   ├── models/
+│   │   ├── Board.js
+│   │   └── Task.js
+│   ├── routes/
+│   │   ├── boardRoutes.js
+│   │   └── taskRoutes.js
+│   ├── vercel.json
+│   ├── package.json
+│   └── .env
+└── README.md
+```
 
-For more information about the challenge, access the challenge editor on [devChallenges.io](https://devchallenges.io/challenges-dashboard).
+## Database Design
 
-## Steps to Complete the Challenge on devChallenges.io
+The application uses two MongoDB collections.
 
-- [ ] Start by visiting [devChallenges.io](https://devchallenges.io/), navigate to the challenge page, and begin the challenge.
-- [ ] Once you have started the challenge, you will have access to the editor where you can download the necessary resources, check colors, fonts, and more.
-- [ ] Download the starter/resources, and if you are a Pro user, you can also download the Figma file.
-- [ ] Initialize the project as a Git repository.
-- [ ] Review the design and analyze the different versions for desktop, tablet, and mobile.
-- [ ] Plan your approach to the project by identifying reusable CSS classes and structuring your HTML content.
-- [ ] Define the base styles for your project, including font-family, font-size, and other general content styles.
-- [ ] Begin adding styles from the top of the page and work your way down, ensuring that each section is visually appealing and matches the provided design.
-- [ ] Optimize and resize the required assets from the `/images` folder as necessary.
-- [ ] Test your project's responsiveness by previewing it on different devices and screen sizes.
-- [ ] Once you are satisfied with your implementation, deploy your project to a hosting platform such as GitHub Pages, Vercel, or Netlify.
-- [ ] Submit your solution on devchallenges.io and aim to pass the design comparison and performance tests.
-- [ ] Replace the default `README.md` file with a custom one that explains your project and reflects on your learning experience. You can use the provided `README-template.md` as a starting point.
-- [ ] Share your solution with the devChallenges.io community by tweeting [@devchallengesio](https://twitter.com/devchallengesio) and mentioning the repository and live URLs in your tweet. You can also share your solution on other social channels or write a blog post about your experience.
-- [ ] Seek feedback from the community by using the provided templates or asking specific questions about your implementation.
+### Board
 
-Good luck and enjoy building your project! 🚀
+```text
+Board
+├── _id
+├── name
+└── description
+```
 
-## Deploying your project
+### Task
 
-Our recommended hosting options include:
+```text
+Task
+├── _id
+├── boardId
+├── name
+├── description
+├── icon
+└── status
+```
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+Each task contains a `boardId` that references its parent board.
 
-You can choose any of these solutions or explore other trusted providers. For more information, please refer to our guide on [free hosting platforms](https://devchallenges.io/learn/1-fundamentals/free-hosting-for-web-projects).
+## API Endpoints
 
-## Create your own `README.md`
+### Boards
 
-To use the Readme template, follow these steps:
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/boards/:id` | Get board and its tasks |
+| POST | `/api/boards` | Create a new board |
+| PUT | `/api/boards/:id` | Update board |
+| DELETE | `/api/boards/:id` | Delete board and its tasks |
 
-1. Open the `README-template.md` file in your text editor.
-2. Replace the placeholder content with your own project information.
-3. Customize the sections and headings to fit your project's needs.
-4. Add a detailed description of your project, including its purpose and features.
-5. Reflect on your learning experience and any challenges you encountered during development.
-6. Delete the original `README.md` file.
-7. Rename the `README-template.md` file to `README.md`.
-8. Save the changes and commit the updated `README.md` file to your repository.
+### Tasks
 
-By following these instructions, you can create a customized `README.md` file that effectively communicates your project to others.
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/tasks` | Create a task |
+| PUT | `/api/tasks/:id` | Update a task |
+| DELETE | `/api/tasks/:id` | Delete a task |
 
-## More guides
+## Environment Variables
 
-Don't forget to check out the [devChallenges Curriculum](https://devchallenges.io/learn), which covers basic to advanced topics that are essential for your web development journey.
+### Frontend
 
-## Sharing your solution
+Create a `.env` file inside the frontend directory:
 
-There are several platforms where you can share your solution:
+```env
+VITE_API_URL=http://localhost:3000
+```
 
-1.  Tweet [@devchallengesio](https://x.com/devchallengesio) and mention **@devchallengesio**, including the repository and live URLs in your tweet. We would love to see what you have built and help spread the word.
-2.  Share your solution on other social channels such as LinkedIn and tag [devchallenges](https://www.linkedin.com/company/devchallenges).
-3.  Write a blog post about your experience building the project. Documenting your workflow, technical choices, and explaining your code is an excellent way to reinforce your learning. Popular platforms for writing include [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+For production:
 
-We provide templates to help you share your solution once you have submitted it on the platform. Feel free to edit them and include specific questions when seeking feedback.
+```env
+VITE_API_URL=https://your-vercel-backend-url.vercel.app
+```
 
-The more specific your questions are, the more likely it is that another community member will provide feedback.
+### Backend
 
-## Feedback
+For local MongoDB:
 
-We value feedback and are always looking to improve our challenges and platform. If you have any suggestions or comments, please email us at hi\[at]devchallenges\[dot]io.
+```env
+MONGO_URL=mongodb://localhost:27017/tasks
+```
 
-This challenge is completely free. Please share it with anyone who would find it useful for practice.
+For MongoDB Atlas:
 
-**Enjoy building!** 🚀
+```env
+MONGO_URL=mongodb+srv://USERNAME:PASSWORD@CLUSTER.mongodb.net/tasks
+```
+
+**Never commit `.env` files or database credentials to GitHub.**
+
+## Running Locally
+
+### Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/my-task-board.git
+cd my-task-board
+```
+
+### Backend
+
+```bash
+cd backend
+npm install
+npm run start
+```
+
+The backend runs on:
+
+```text
+http://localhost:3000
+```
+
+### Frontend
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend will normally run on:
+
+```text
+http://localhost:5173
+```
+
+## Production Architecture
+
+```text
+                    ┌─────────────────┐
+                    │     Browser     │
+                    │  React Frontend │
+                    └────────┬────────┘
+                             │
+                             │ REST API
+                             ▼
+                    ┌─────────────────┐
+                    │     Vercel      │
+                    │ Express Backend  │
+                    └────────┬────────┘
+                             │
+                             │ Mongoose
+                             ▼
+                    ┌─────────────────┐
+                    │  MongoDB Atlas  │
+                    │     Database    │
+                    └─────────────────┘
+```
+
+The React frontend communicates with the Vercel backend using the `VITE_API_URL` environment variable.
+
+## Task Statuses
+
+Tasks use the following status values:
+
+```text
+in-progress
+completed
+wont-do
+todo
+```
+
+## Deployment
+
+### Frontend
+
+Build the React application:
+
+```bash
+npm run build
+```
+
+The production files are generated in:
+
+```text
+dist/
+```
+
+Deploy the `dist` directory to Netlify or connect the GitHub repository for automatic deployments.
+
+For Netlify, set:
+
+```text
+VITE_API_URL=https://your-vercel-backend-url.vercel.app
+```
+
+### Backend
+
+The Express backend is configured for Vercel.
+
+Deploy using:
+
+```bash
+cd backend
+npx vercel --prod
+```
+
+Set the MongoDB connection string as the Vercel environment variable:
+
+```text
+MONGO_URL
+```
+
+## Future Improvements
+
+- User authentication
+- Multiple users and private boards
+- Drag-and-drop task management
+- Task due dates
+- Task priorities
+- Search and filtering
+- Board deletion from the UI
+- Loading and error states
+- Toast notifications
+- Improved mobile experience
+
+## License
+
+This project is developed for learning and portfolio purposes.
